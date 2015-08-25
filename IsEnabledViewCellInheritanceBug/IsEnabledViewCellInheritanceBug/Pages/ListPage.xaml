@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IsEnabledViewCellInheritanceBug.Controls;assembly=IsEnabledViewCellInheritanceBug"
+             xmlns:valueConverters="clr-namespace:IsEnabledViewCellInheritanceBug.ValueConverters;assembly=IsEnabledViewCellInheritanceBug"
+             x:Class="IsEnabledViewCellInheritanceBug.Pages.ListPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <valueConverters:EnumEnabledConverter x:Key="EnumToBoolConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <TableView>
+        <TableRoot>
+            <TableSection>
+                <controls:DatePickerCell Label="{Binding LabelText}" IsEnabled="{Binding FooEnum, Converter={StaticResource EnumToBoolConverter}, Mode=OneWay}" Date="{Binding TheDate}" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</ContentPage>
